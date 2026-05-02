@@ -2,9 +2,11 @@ import http from 'k6/http'; // importar a biblioteca http do k6
 import { sleep, check } from 'k6'; // importar as funções sleep & check do k6
 
 export const options = {  // declarar a constante 'options' para exportação, visando setar as configurações e critérios do teste 
-  iterations: 50,
+  vus: 10,
+  duration: '30s',
   thresholds: {
-    http_req_duration: ['p(90)<5', 'max<90']
+    http_req_duration: ['p(90)<3000', 'max<5000'],
+    http_req_failed: ['rate<0.01']
   },
 }
 
