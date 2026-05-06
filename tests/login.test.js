@@ -1,17 +1,18 @@
 import http from 'k6/http'; // importar a biblioteca http do k6
 import { sleep, check } from 'k6'; // importar as funções sleep & check do k6
 const postLogin = JSON.parse(open('../fixtures/postLogin.json')) //pega o texto da fixture e transforma em objeto para ser usado na chamada da API
+import { pegarBaseUrl } from '../utils/variaveis.js'
 
 
 export const options = {  // declarar a constante 'options' para exportação, visando setar as configurações e critérios do teste 
-
-  stages: [
-   { duration: '10s', target: 10 },
-   { duration: '20s', target: 10 },
-   { duration: '10s', target: 30 },
-   { duration: '20s', target: 30 },
-   { duration: '20s', target: 0 }
-  ],
+  iterations: 1,
+  // stages: [
+  //  { duration: '10s', target: 10 },
+  //  { duration: '20s', target: 10 },
+  //  { duration: '10s', target: 30 },
+  //  { duration: '20s', target: 30 },
+  //  { duration: '20s', target: 0 }
+  // ],
   
   thresholds: {
     http_req_duration: ['p(90)<3000', 'max<5000'],
@@ -25,7 +26,7 @@ export default function() { // declarar a função default como exportação e i
     // incluir checks para validar o funcionamento da API
   
 
-  const url = 'http://localhost:3000/login'
+  const url = pegarBaseUrl() + '/login'
 
   postLogin.username = "junior.lima" // usado para alterar alguma propriedade do arquivo fixture para o teste
   console.log(postLogin)
