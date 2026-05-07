@@ -5,14 +5,14 @@ import { pegarBaseUrl } from '../utils/variaveis.js'
 
 
 export const options = {  // declarar a constante 'options' para exportação, visando setar as configurações e critérios do teste 
-  iterations: 1,
-  // stages: [
-  //  { duration: '10s', target: 10 },
-  //  { duration: '20s', target: 10 },
-  //  { duration: '10s', target: 30 },
-  //  { duration: '20s', target: 30 },
-  //  { duration: '20s', target: 0 }
-  // ],
+
+  stages: [
+   { duration: '10s', target: 10 },
+   { duration: '20s', target: 10 },
+   { duration: '10s', target: 30 },
+   { duration: '20s', target: 30 },
+   { duration: '20s', target: 0 }
+  ],
   
   thresholds: {
     http_req_duration: ['p(90)<3000', 'max<5000'],
